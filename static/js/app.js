@@ -63,21 +63,9 @@ buildTable(filteredData);
   
     // 9. Loop through all of the filters and keep any data that
     // matches the filter values
-    function buildTable(data) {
-      tbody.html("");
-  
-      // Next loop through each object in the data and append a row and cells for each value in the row
-      filteredData.forEach((dataRow) => {
-          let row = tbody.append("tr");
-          
-          // Loop through each field in the dataRow and add each value as a table cell (td)
-          Object.values(dataRow).forEach((val) => {
-              let cell = row.append("td");
-              cell.text(val);
-              }
-          );
-      });
-   }
+    Object.entries(filters).forEach(([key, value]) => {
+      filteredData = filteredData.filter(row => row[key] === value);
+    });
   
     // 10. Finally, rebuild the table using the filtered data
     buildTable(filteredData);
